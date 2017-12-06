@@ -68,7 +68,7 @@
 #define CHANNEL_AIN9   ADC_CHANNEL_9
 #define CHANNEL_AIN10   ADC_CHANNEL_10
 
-#define AVG_NUM  8
+#define AVG_NUM  5
 
 /* USER CODE END Includes */
 
