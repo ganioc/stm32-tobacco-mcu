@@ -1,0 +1,33 @@
+---- nvic_systemreset Matches (8 in 8 files) ----
+Core_cm0.h (drivers\cmsis\include):730
+__STATIC_INLINE void NVIC_SystemReset(void)
+{
+  __DSB();                                                          /* Ensure all outstanding memory accesses included
+Core_cm0plus.h (drivers\cmsis\include):846
+__STATIC_INLINE void NVIC_SystemReset(void)
+{
+  __DSB();                                                          /* Ensure all outstanding memory accesses included
+Core_cm3.h (drivers\cmsis\include):1616
+__STATIC_INLINE void NVIC_SystemReset(void)
+{
+  __DSB();                                                          /* Ensure all outstanding memory accesses included
+Core_cm4.h (drivers\cmsis\include):1790
+__STATIC_INLINE void NVIC_SystemReset(void)
+{
+  __DSB();                                                          /* Ensure all outstanding memory accesses included
+Core_cm7.h (drivers\cmsis\include):1998
+__STATIC_INLINE void NVIC_SystemReset(void)
+{
+  __DSB();                                                          /* Ensure all outstanding memory accesses included
+Core_sc000.h (drivers\cmsis\include):858
+__STATIC_INLINE void NVIC_SystemReset(void)
+{
+  __DSB();                                                          /* Ensure all outstanding memory accesses included
+Core_sc300.h (drivers\cmsis\include):1598
+__STATIC_INLINE void NVIC_SystemReset(void)
+{
+  __DSB();                                                          /* Ensure all outstanding memory accesses included
+Stm32f1xx_hal_cortex.c (drivers\stm32f1xx_hal_driver\src):260
+  NVIC_SystemReset();
+}
+

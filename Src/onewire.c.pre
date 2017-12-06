@@ -1,0 +1,199 @@
+#include "onewire.h"
+
+
+uint16_t tempSensor1;
+uint16_t tempSensor2;
+uint16_t tempSensor3;
+uint16_t tempSensor4;
+
+
+void Enable_RX(uint16_t pin)
+{
+
+    GPIO_InitTypeDef GPIO_InitStruct;
+
+    GPIO_InitStruct.Pin = pin;
+    GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    HAL_GPIO_Init(SENSOR_PORT, &GPIO_InitStruct);
+
+}
+
+
+void Enable_TX(uint16_t pin)
+{
+    GPIO_InitTypeDef GPIO_InitStruct;
+
+    GPIO_InitStruct.Pin = pin;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+    HAL_GPIO_Init(SENSOR_PORT, &GPIO_InitStruct);
+
+    HAL_GPIO_WritePin(SENSOR_PORT, pin, GPIO_PIN_SET);
+}
+
+void Wire_On(uint16_t pin)
+{
+    HAL_GPIO_WritePin(SENSOR_PORT, pin, GPIO_PIN_SET);
+}
+
+void Wire_Off(uint16_t pin)
+{
+    HAL_GPIO_WritePin(SENSOR_PORT, pin, GPIO_PIN_RESET);
+}
+
+GPIO_PinState Wire_Read(uint16_t pin)
+{
+
+    return HAL_GPIO_ReadPin(SENSOR_PORT,  pin);
+}
+
+void DelayUs(uint32_t time)
+{
+
+    uint32_t i, j;
+
+    uint32_t times = time * 10;
+
+    for(j =0 ; j< times; j++)
+    {
+
+        i = 100000;
+
+        do
+        {
+            i--;
+        }
+        while(i>0);
+
+    }
+
+
+}
+
+uint8_t InitSensor1()
+{
+
+    GPIO_PinState pinState;
+
+    Enable_TX(SENSOR_PIN1);
+    Wire_Off(SENSOR_PIN1);
+
+    DelayUs(480); // delay 480us
+
+    Wire_On(SENSOR_PIN1);
+    Enable_RX(SENSOR_PIN1);
+
+
+    DelayUs(60);
+
+    pinState = Wire_Read(SENSOR_PIN1);
+    //printf("OneWire: sensor1 init read:%d\n", pinState);
+
+    if(pinState != 0)
+    {
+        return False;
+    }
+    else
+    {
+        return True;
+    }
+}
+void WriteBit(uint16_t pin, uint8_t bit)
+{
+    Enable_TX(SENSOR_PIN1);
+    Wire_Off(SENSOR_PIN1);
+
+    DelayUs(5);
+
+    if(bit != 0)
+    {
+
+        Wire_On(SENSOR_PIN1);
+        DelayUs(50);
+        Enable_RX(SENSOR_PIN1);
+
+    }
+    else
+    {
+
+        DelayUs(50);
+        Wire_On(SENSOR_PIN1);
+        Enable_RX(SENSOR_PIN1);
+    }
+
+}
+void WriteSensor1(uint8_t cmd)
+{
+    uint8_t i;
+    uint8_t bit;
+
+    for(i =0 ;i< 8; i++)
+    {
+
+        bit = (cmd >>i)&0x01;
+        WriteBit(SENSOR_PIN1, bit);
+        DelayUs(5);
+    }
+
+
+}
+
+void TrigureSensor1()
+{
+    uint8_t status = False;
+
+    // Init
+    status = InitSensor1();
+
+    if(status != True)
+    {
+        printf("TrigureSensor1: Init fail");
+        return;
+    }
+
+    DelayUs( 300);
+
+    // Skip ROM
+    WriteSensor1(0xCC);
+
+    DelayUs( 300);
+
+    // Convert T
+
+    WriteSensor1(0x44);
+
+    printf("OneWire:trigure sensor1\n");
+
+}
+void ReadSensor1()
+{
+ uint8_t status = False;
+
+    // Init
+    status = InitSensor1();
+
+    if(status != True)
+    {
+        printf("TrigureSensor1: Init fail");
+        return;
+    }
+
+    DelayUs( 300);
+
+    // Skip ROM
+    WriteSensor1(0xCC);
+
+    DelayUs( 300);
+
+    // Convert T
+
+    WriteSensor1(0x44);
+
+    
+
+    printf("OneWire: sensor1 is %x\n", tempSensor1);
+}
+
+
+
