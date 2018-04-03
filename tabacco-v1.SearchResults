@@ -1,33 +1,37 @@
----- nvic_systemreset Matches (8 in 8 files) ----
-Core_cm0.h (drivers\cmsis\include):730
-__STATIC_INLINE void NVIC_SystemReset(void)
-{
-  __DSB();                                                          /* Ensure all outstanding memory accesses included
-Core_cm0plus.h (drivers\cmsis\include):846
-__STATIC_INLINE void NVIC_SystemReset(void)
-{
-  __DSB();                                                          /* Ensure all outstanding memory accesses included
-Core_cm3.h (drivers\cmsis\include):1616
-__STATIC_INLINE void NVIC_SystemReset(void)
-{
-  __DSB();                                                          /* Ensure all outstanding memory accesses included
-Core_cm4.h (drivers\cmsis\include):1790
-__STATIC_INLINE void NVIC_SystemReset(void)
-{
-  __DSB();                                                          /* Ensure all outstanding memory accesses included
-Core_cm7.h (drivers\cmsis\include):1998
-__STATIC_INLINE void NVIC_SystemReset(void)
-{
-  __DSB();                                                          /* Ensure all outstanding memory accesses included
-Core_sc000.h (drivers\cmsis\include):858
-__STATIC_INLINE void NVIC_SystemReset(void)
-{
-  __DSB();                                                          /* Ensure all outstanding memory accesses included
-Core_sc300.h (drivers\cmsis\include):1598
-__STATIC_INLINE void NVIC_SystemReset(void)
-{
-  __DSB();                                                          /* Ensure all outstanding memory accesses included
-Stm32f1xx_hal_cortex.c (drivers\stm32f1xx_hal_driver\src):260
-  NVIC_SystemReset();
-}
+---- osSignalSet Matches (8 in 4 files) ----
+Cmdparser.c (src):28
+        osSignalSet(mSensorThread.idThread, 0x1);
 
+        typeSensor = SENSOR_TEMPERATURE;
+Cmdparser.c (src):35
+        osSignalSet(mSensorThread.idThread, 0x2);
+
+        typeSensor = SENSOR_ADC;
+Cmdparser.c (src):148
+        osSignalSet(mSensorThread.idThread, 0x1);
+
+        typeSensor = SENSOR_TEMPERATURE;
+Cmdparser.c (src):157
+        osSignalSet(mSensorThread.idThread, 0x2);
+
+        typeSensor = SENSOR_ADC;
+Cmsis_os.c (middlewares\third_party\freertos\source\cmsis_rtos):456
+* @note   MUST REMAIN UNCHANGED: \b osSignalSet shall be consistent in every CMSIS-RTOS.
+*/
+int32_t osSignalSet (osThreadId thread_id, int32_t signal)
+{
+#if( configUSE_TASK_NOTIFICATIONS == 1 )	
+Cmsis_os.h (drivers\cmsis\rtos\template):410
+/// \note MUST REMAIN UNCHANGED: \b osSignalSet shall be consistent in every CMSIS-RTOS.
+int32_t osSignalSet (osThreadId thread_id, int32_t signals);
+ 
+/// Clear the specified Signal Flags of an active thread.
+Cmsis_os.h (middlewares\third_party\freertos\source\cmsis_rtos):156
+  - \ref osSignalSet
+  - \ref osSemaphoreRelease
+  - \ref osPoolAlloc, \ref osPoolCAlloc, \ref osPoolFree
+Cmsis_os.h (middlewares\third_party\freertos\source\cmsis_rtos):568
+/// \note MUST REMAIN UNCHANGED: \b osSignalSet shall be consistent in every CMSIS-RTOS.
+int32_t osSignalSet (osThreadId thread_id, int32_t signals);
+
+/// Clear the specified Signal Flags of an active thread.

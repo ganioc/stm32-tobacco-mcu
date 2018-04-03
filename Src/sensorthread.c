@@ -178,16 +178,17 @@ static void TaskLoop(void const * argument)
                 osDelay(50);
                 arrTask[3]();
 
-                osDelay(900);
+                osDelay(700);
 
                 arrReadTask[0]();
-                osDelay(10);
+                osDelay(50);
                 arrReadTask[1]();
-                osDelay(10);
+                osDelay(150);
                 arrReadTask[2]();
-                osDelay(10);
+                osDelay(150);
                 arrReadTask[3]();
                 // send out the result to UART3
+                osDelay(20);
                 SendOutTemp();
 
             }
@@ -212,8 +213,6 @@ static void TaskLoop(void const * argument)
 
                 // send out the result to UART3
                 SendOutADC();
-                
-
             }
 
         }
