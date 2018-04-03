@@ -57,7 +57,7 @@
 /* Configure GPIO                                                             */
 /*----------------------------------------------------------------------------*/
 /* USER CODE BEGIN 1 */
-uint16_t LED1_DELAY = 500;
+uint16_t LED1_DELAY = 1500;
 /* USER CODE END 1 */
 
 /** Configure pins as

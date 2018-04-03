@@ -87,7 +87,6 @@ void DelayUs(uint32_t time)
             i--;
         }
         while(i>0);
-
     }
 
 
@@ -226,9 +225,12 @@ uint8_t ReadBit(uint16_t pin){
     DelayUs(DELAY_PULL_LOW);
 
     Wire_On(pin);
+    
+    DelayUs(DELAY_PULL_LOW);
+    
     Enable_RX(pin);
 
-    DelayUs(DELAY_READ_BIT);
+    DelayUs(12);
 
     bit =  Wire_Read( pin);
 
