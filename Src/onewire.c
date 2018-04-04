@@ -224,13 +224,13 @@ uint8_t ReadBit(uint16_t pin){
 
     DelayUs(DELAY_PULL_LOW);
 
-    Wire_On(pin);
+    //Wire_On(pin);
     
-    DelayUs(DELAY_PULL_LOW);
+    //DelayUs(DELAY_PULL_LOW);
     
     Enable_RX(pin);
 
-    DelayUs(12);
+    DelayUs(9);
 
     bit =  Wire_Read( pin);
 
