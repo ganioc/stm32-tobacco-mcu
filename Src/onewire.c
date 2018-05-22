@@ -1,6 +1,7 @@
 #include "onewire.h"
 #include "message.h"
 #include "commthread.h"
+#include "gpio.h"
 
 static char tempStr[NET_MESSAGE_LEN];
 
@@ -218,6 +219,8 @@ void TrigureSensor4()
 }
 uint8_t ReadBit(uint16_t pin){
     GPIO_PinState bit;
+
+    //taskENTER_CRITICAL();
     
     Enable_TX(pin);
     Wire_Off(pin);
@@ -230,10 +233,14 @@ uint8_t ReadBit(uint16_t pin){
     
     Enable_RX(pin);
 
-    DelayUs(9);
+    DelayUs(12);
 
     bit =  Wire_Read( pin);
-
+    
+    LED1_Off();
+    
+    //taskEXIT_CRITICAL(); 
+    
     return bit;    
 }
 void ReadSensorByte(uint16_t pin, uint8_t * b){
@@ -243,7 +250,7 @@ void ReadSensorByte(uint16_t pin, uint8_t * b){
 
     for(i =0 ; i< 8; i++)
     {
-
+        LED1_On();
         bit = ReadBit(pin);
         
         if(bit == 1){
@@ -266,6 +273,7 @@ void ReadSensor(uint16_t *store, uint16_t pin){
     {
         sprintf(tempStr,"TrigureSensor: %d Init fail\r\n", pin);
         CommPrint(tempStr);
+        *store = 0;  // added by yang 2018-5-16
         return;
     }
 

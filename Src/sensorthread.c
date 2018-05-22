@@ -169,6 +169,7 @@ static void TaskLoop(void const * argument)
         {
             if(typeSensor == SENSOR_TEMPERATURE)
             {
+                printf("read it\r\n");
 
                 arrTask[0]();
                 osDelay(50);
@@ -178,14 +179,14 @@ static void TaskLoop(void const * argument)
                 osDelay(50);
                 arrTask[3]();
 
-                osDelay(700);
+                osDelay(1200);
 
                 arrReadTask[0]();
-                osDelay(100);
+                osDelay(50);
                 arrReadTask[1]();
                 osDelay(50);
                 arrReadTask[2]();
-                osDelay(10);
+                osDelay(50);
                 arrReadTask[3]();
                 // send out the result to UART3
                 osDelay(50);

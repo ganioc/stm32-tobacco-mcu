@@ -7,7 +7,7 @@
 #define DELAY_BETWEEN_BYTE  100 // 50
 #define DELAY_BETWEEN_BIT  20 // 5
 #define DELAY_BETWEEN_READ_BIT  75  //45
-#define DELAY_PULL_LOW         2
+#define DELAY_PULL_LOW         1
 #define DELAY_READ_BIT        ( 15-DELAY_PULL_LOW)
 #define DELAY_BETWEEN_OPERATION  5 // 1
 

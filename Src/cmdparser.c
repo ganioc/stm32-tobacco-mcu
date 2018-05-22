@@ -24,9 +24,9 @@ void UART3_Parse(char * instr)
 
     if(strcmp(str, "GET*TEMP") == 0)
     {
-
+        printf("get temp\r\n");
         osSignalSet(mSensorThread.idThread, 0x1);
-
+        
         typeSensor = SENSOR_TEMPERATURE;
     }
     else if(strcmp(str, "GET*ADC*")== 0)

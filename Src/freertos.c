@@ -128,7 +128,7 @@ void StartDefaultTask(void const * argument)
   {
     osDelay(LED1_DELAY);
     wwdg_life_counter = 0;
-    LED1_Toggle();
+    // LED1_Toggle();
     // printf("1");
   }
   /* USER CODE END StartDefaultTask */

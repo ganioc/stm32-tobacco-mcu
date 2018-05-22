@@ -1,37 +1,21 @@
----- osSignalSet Matches (8 in 4 files) ----
-Cmdparser.c (src):28
-        osSignalSet(mSensorThread.idThread, 0x1);
+---- ReadSensor Matches (5 in 1 files) ----
+Onewire.c (src):262
+void ReadSensor(uint16_t *store, uint16_t pin){
+    
+    uint8_t status = False;
+Onewire.c (src):312
+    ReadSensor( &tempSensor1, SENSOR_PIN1);
 
-        typeSensor = SENSOR_TEMPERATURE;
-Cmdparser.c (src):35
-        osSignalSet(mSensorThread.idThread, 0x2);
+}
+Onewire.c (src):317
+    ReadSensor( &tempSensor2, SENSOR_PIN2);
 
-        typeSensor = SENSOR_ADC;
-Cmdparser.c (src):148
-        osSignalSet(mSensorThread.idThread, 0x1);
+}
+Onewire.c (src):322
+    ReadSensor( &tempSensor3, SENSOR_PIN3);
 
-        typeSensor = SENSOR_TEMPERATURE;
-Cmdparser.c (src):157
-        osSignalSet(mSensorThread.idThread, 0x2);
+}
+Onewire.c (src):328
+    ReadSensor( &tempSensor4, SENSOR_PIN4);
 
-        typeSensor = SENSOR_ADC;
-Cmsis_os.c (middlewares\third_party\freertos\source\cmsis_rtos):456
-* @note   MUST REMAIN UNCHANGED: \b osSignalSet shall be consistent in every CMSIS-RTOS.
-*/
-int32_t osSignalSet (osThreadId thread_id, int32_t signal)
-{
-#if( configUSE_TASK_NOTIFICATIONS == 1 )	
-Cmsis_os.h (drivers\cmsis\rtos\template):410
-/// \note MUST REMAIN UNCHANGED: \b osSignalSet shall be consistent in every CMSIS-RTOS.
-int32_t osSignalSet (osThreadId thread_id, int32_t signals);
- 
-/// Clear the specified Signal Flags of an active thread.
-Cmsis_os.h (middlewares\third_party\freertos\source\cmsis_rtos):156
-  - \ref osSignalSet
-  - \ref osSemaphoreRelease
-  - \ref osPoolAlloc, \ref osPoolCAlloc, \ref osPoolFree
-Cmsis_os.h (middlewares\third_party\freertos\source\cmsis_rtos):568
-/// \note MUST REMAIN UNCHANGED: \b osSignalSet shall be consistent in every CMSIS-RTOS.
-int32_t osSignalSet (osThreadId thread_id, int32_t signals);
-
-/// Clear the specified Signal Flags of an active thread.
+}
