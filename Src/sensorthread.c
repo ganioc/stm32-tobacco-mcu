@@ -77,20 +77,20 @@ void SendOutTemp()
 
     char val1 [10], val2[10], val3[10], val4[10];
 
-    /*
-        sprintf(val, "%.3f", transTemp( tempSensor1));
-
-        len = strlen(val);
-
-        sprintf(tempStr, "%s\r\n", val);
-        CommPrint(tempStr);
-
-        while (len < 8){
-            val[len++] = '0';
-
-        }
-        val[len] = '\0';
-        */
+    
+//        sprintf(val, "%.3f", transTemp( tempSensor1));
+//
+//        len = strlen(val);
+//
+//        sprintf(tempStr, "%s\r\n", val);
+//        CommPrint(tempStr);
+//
+//        while (len < 8){
+//            val[len++] = '0';
+//
+//        }
+//        val[len] = '\0';
+        
     CopyTemp2Str(val1, tempSensor1);
     CopyTemp2Str(val2, tempSensor2);
     CopyTemp2Str(val3, tempSensor3);
@@ -163,7 +163,7 @@ static void TaskLoop(void const * argument)
     while(1)
     {
 
-        ret = osSignalWait(0x3,500);
+        ret = osSignalWait(0x3,200);
 
         if(ret.status ==  osEventSignal)
         {
@@ -179,7 +179,7 @@ static void TaskLoop(void const * argument)
                 osDelay(50);
                 arrTask[3]();
 
-                osDelay(1200);
+                osDelay(1350);
 
                 arrReadTask[0]();
                 osDelay(50);
