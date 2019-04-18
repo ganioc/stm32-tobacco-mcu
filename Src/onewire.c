@@ -220,7 +220,7 @@ void TrigureSensor4()
 uint8_t ReadBit(uint16_t pin){
     GPIO_PinState bit;
 
-    //taskENTER_CRITICAL();
+    taskENTER_CRITICAL();
     
     Enable_TX(pin);
     Wire_Off(pin);
@@ -239,7 +239,7 @@ uint8_t ReadBit(uint16_t pin){
     
     LED1_Off();
     
-    //taskEXIT_CRITICAL(); 
+    taskEXIT_CRITICAL(); 
     
     return bit;    
 }
